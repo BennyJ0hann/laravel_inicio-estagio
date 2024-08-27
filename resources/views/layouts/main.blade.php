@@ -19,19 +19,28 @@
                     </a>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="/contacts" class="nav-link">Primeiro</a>
+                            <a href="/contacts" class="nav-link">Eventos</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/products" class="nav-link">Segundo</a>
+                            <a href="/events" class="nav-link">Criar Eventos</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/events/create" class="nav-link">Terceiro</a>
+                            <a href="/" class="nav-link">Terceiro</a>
                         </li>
                     </ul>
                 </div>
             </nav>
         </header>
-       @yield('content')
+       <main>
+        <div class="conteiner-fluid">
+            <div class="row">
+                @if (session('msg'))
+                <p class="msg">{{session('msg') }}</p>
+                @endif
+                @yield('content')
+            </div>
+        </div>
+       </main>
 
     <footer>
         <p>Projeto em Laravel - Benny Johann 2024 </p>

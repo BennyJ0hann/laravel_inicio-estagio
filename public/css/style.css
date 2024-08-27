@@ -2,6 +2,7 @@
 
 body{
     min-height: 100vh;
+    padding-bottom: 100px;
     position: relative;
 }
 
@@ -26,6 +27,16 @@ header{
 .btn-primary:hover{
     background-color: #c28008;
     border-color: #c28008;
+}
+
+.msg{
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 10px;
 }
 
 /*Navbar*/
@@ -55,7 +66,7 @@ header{
     background-image: url('/img/banner.jpg');
     background-size: cover;
     background-position: center;
-    height: 400px;
+    height: 70dvh;
     padding: 50px;
     text-align: center;
 }
@@ -69,6 +80,7 @@ header{
 #search-container form {
     width: 50%;
     margin: 0 auto;
+    
 }
 /* Events list*/
 
@@ -89,18 +101,18 @@ header{
     display: flex;
 }
 
-#events-conteiner .card {
-    flex: 1 1 0;
+#events-container .card {
+    flex: 1 1 24%;
     max-width: 25%;
     border-radius: 10px;
     padding: 0;
-    margin: 5px;
+    margin: .5%;
 }
 
-/* #events-container img{
-    max-height: 0px;
+ /* #events-container img{
+    max-height: 400px;
 
-} */
+}*/
 
 .card .card-date{
     font-size: 12px;
@@ -117,15 +129,33 @@ header{
 .card-participants{
     font-size:14px;
     color: #757575
+    }
+/* Event create page*/
+#event-create-container {
+    padding: 30px;
 }
+
+#event-create-container label{
+    font-weight: bold;
+}
+#event-create-container input,
+#event-create-container select,
+#event-create-container textarea{
+    font-size: 16px;
+}
+
 
 /* Footer */
 footer{
     text-align: center;
     background-color: #353e48;
     color: #fff;
-    padding: 30px;
+    padding: 15px;
     position: absolute;
     bottom: 0;
     width: 100%;
+}
+
+footer p{
+    margin-bottom: 0;
 }
