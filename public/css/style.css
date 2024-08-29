@@ -144,7 +144,48 @@ header{
     font-size: 16px;
 }
 
-
+/*Event page*/
+#image-container,
+#info-container{
+    margin-top: 7dvh;
+}
+#image-container img{
+    border-radius:10px;
+    max-width: 85dvh; 
+    max-height: 70dvh; 
+    width: 100%;
+    height: auto; 
+    object-fit: cover;
+}
+#info-container h1{
+    font-size: 36px;
+    font-weight: 900;
+}
+#info-container p {
+    margin: 0;
+    font-size: 18px;
+    display: flex;
+}
+#info-container h3,
+#description-container h3{
+    font-size: 20px;
+    font-weight: bold;
+}
+#info-container i{
+    font-size: 18px;
+    color:#f2a340 ;
+    margin-right: 5px;
+}
+#info-container #event-submit{
+    margin: 20px, 0;
+}
+#items-list{
+    list-style: none;
+    padding-left: 0;
+}
+#items-list li{
+    display: flex;
+}
 /* Footer */
 footer{
     text-align: center;
