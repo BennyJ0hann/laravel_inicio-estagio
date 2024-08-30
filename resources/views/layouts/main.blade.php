@@ -11,7 +11,7 @@
         
         
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+    <body class="font-sans antialiased">
         <header>
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="collapse navbar-collapse" id="navbar">
@@ -25,9 +25,30 @@
                         <li class="nav-item">
                             <a href="/events" class="nav-link">Criar Eventos</a>
                         </li>
+                        @auth
                         <li class="nav-item">
-                            <a href="/" class="nav-link">Terceiro</a>
+                            <a href="/dashboard" class="nav-link">Meus eventos</a>
                         </li>
+                        <li class="nav-item">
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <a href="/logout" class="nav-link"
+                                    onclick="event.preventDefault();
+                                    this.closest('form').submit();"
+                                >
+                                    Sair
+                                </a>
+                            </form>
+                        </li>
+                        @endauth
+                        @guest
+                        <li class="nav-item">
+                            <a href="/login" class="nav-link">Entrar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/register" class="nav-link">Cadastrar</a>
+                        </li>
+                        @endguest
                     </ul>
                 </div>
             </nav>
