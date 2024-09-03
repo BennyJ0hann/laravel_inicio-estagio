@@ -20,14 +20,14 @@
                     </a>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="/contacts" class="nav-link">Eventos</a>
+                            <a href="/" class="nav-link">Eventos</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/events" class="nav-link">Criar Eventos</a>
+                            <a href="/events/create" class="nav-link">Criar Eventos</a>
                         </li>
                         @auth
                         <li class="nav-item">
-                            <a href="/dashboard" class="nav-link">Meus eventos</a>
+                            <a href="/events" class="nav-link">Meus eventos</a>
                         </li>
                         <li class="nav-item">
                             <form action="/logout" method="POST">
