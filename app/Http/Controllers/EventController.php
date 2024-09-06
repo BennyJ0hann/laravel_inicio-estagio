@@ -60,14 +60,30 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect('/')->with('msg', 'Evento criado com sucesso!');
+        return redirect(route('home'))->with('msg', 'Evento criado com sucesso!');
     }
     public function show($id){
         $event = Event::findOrFail($id);
 
+        $user = auth()->user();
+        $hasUserJoined = false;
+
+        if($user){
+
+            $userEvents = $user->eventsAsParticipant->toArray();
+
+            foreach($userEvents as $userEvent){
+
+                if($userEvent['id'] == $id){
+                    $hasUserJoined = true;
+                }
+
+            }
+
+        }
         $eventOwner = User::where('id', $event->user_id)->first()->toArray();
 
-        return view('events.show', ['event' => $event,'eventOwner' => $eventOwner]);
+        return view('events.show', ['event' => $event,'eventOwner' => $eventOwner, 'hasUserJoined' => $hasUserJoined]);
     }
 
     public function dashboard (){
@@ -83,7 +99,7 @@ class EventController extends Controller
     public function destroy($id){
         Event::findOrFail($id)->delete();
 
-        return redirect('/events')->with('msg', 'Evento excluído com sucesso!');
+        return redirect( route('events.table'))->with('msg', 'Evento excluído com sucesso!');
     }
 
     public function edit($id){
@@ -93,7 +109,7 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
 
         if($user->id != $event->user_id){
-            return redirect('/events');
+            return redirect(route('events.table'));
         }
 
         return view('events.edit', ['event' => $event]);
@@ -103,7 +119,7 @@ class EventController extends Controller
     public function update(Request $request){
         Event::findOrFail($request->id)->update($request->all());
 
-        return redirect('/events')->with('msg', 'Evento editado com sucesso!');
+        return redirect(route('events.table'))->with('msg', 'Evento editado com sucesso!');
     }
 
     public function joinEvent($id){
@@ -113,7 +129,19 @@ class EventController extends Controller
 
         $event = Event::findOrFail($id);
         
-        return redirect('/events')->with('msg','Sua presença está confirmada no evento '. $event->title);
+        return redirect(route('home'))->with('msg','Sua presença está confirmada no evento '. $event->title);
+    }
+
+    public function leaveEvent($id){
+        $user = auth()->user();
+
+        $user->eventsAsParticipant()->detach($id);
+
+        $event = Event::findOrFail($id);
+
+        return redirect(route('events.table'))->with('msg','Você saiu do evento '. $event->title);
+
+
     }
 }
 

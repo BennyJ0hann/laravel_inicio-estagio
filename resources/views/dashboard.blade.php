@@ -11,7 +11,7 @@
     @if (count($events)> 0)
     
     @else
-    <p>Você ainda não tem eventos, <a href="/">criar evento</a></p>
+    <p>Você ainda não tem eventos, <a href="{{route('home') }}">criar evento</a></p>
     @endif
 </div>
 

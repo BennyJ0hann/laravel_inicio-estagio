@@ -14,11 +14,19 @@
             <p class="event-city"><i class="bi bi-geo-alt"></i> {{ $event->city }}</p>
             <p class="events-participants"><i class="bi bi-people"></i> {{ count($event->users) }} Participantes</p>
             <p class="event-owner"><i class="bi bi-star"></i> {{$eventOwner['name']}}</p>
-            <form action="/events/join/{{ $event->id }}" method="POST">
+            @if (!$hasUserJoined)
+
+            <form action="{{ route('events.entry',['id' => $event->id]) }}" method="POST">
                 @csrf
-                <a href="/events/join/{{ $event->id }}" class="btn btn-primary" id="event-submit" onclick="event.preventDefault(); this.closest('form').submit()">
+                <a href="{{ route('events.info', ['id' => $event->id])  }}" class="btn btn-primary" id="event-submit" onclick="event.preventDefault(); this.closest('form').submit()">
                     Confirmar presença</a>
             </form>
+
+            @else
+
+            <p class="already-joined-msg"> Você ja está participado desse evento!</p>
+            
+            @endif
             <h3>O evento conta com:</h3>
             <ul id="items-list">
                 @foreach ($event->items as $item)
